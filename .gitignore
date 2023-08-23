@@ -1,2 +1,4 @@
-app-root/node_modules
+app-finances-root/node_modules
+app-my-account/node_modules
+app-transactions/node_modules
 backup

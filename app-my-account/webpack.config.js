@@ -2,9 +2,9 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports = {
+module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "http://localhost:3002/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 3000,
+    port: 3002,
     historyApiFallback: true,
   },
 
@@ -41,10 +41,10 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "app-root",
+      name: "app_my_account",
       filename: "remoteEntry.js",
       remotes: {
-        components: "app-root@http://localhost:4001/remoteEntry.js",
+        app_finances_root: "app_finances_root@http://localhost:3000/remoteEntry.js",
       },
       exposes: {},
       shared: {
@@ -63,4 +63,4 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
-};
+});

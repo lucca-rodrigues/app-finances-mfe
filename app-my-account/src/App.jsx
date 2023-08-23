@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// import Header from "components/Header";
+import "./index.css";
+import Account from "./Pages/Account";
 
 const App = () => (
   <>
-    <h1>Root app</h1>
+    <Account />
   </>
 );
 ReactDOM.render(<App />, document.getElementById("app"));
