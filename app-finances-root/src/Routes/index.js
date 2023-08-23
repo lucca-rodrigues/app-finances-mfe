@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Home, SignIn, Signup } from "../Pages";
-
+import { Account } from "app_my_account/Pages";
 export default function Routes() {
   const router = createBrowserRouter([
     {
@@ -15,6 +15,10 @@ export default function Routes() {
     {
       path: "/signup",
       element: <Signup />,
+    },
+    {
+      path: "/account",
+      element: <Account />,
     },
   ]);
 

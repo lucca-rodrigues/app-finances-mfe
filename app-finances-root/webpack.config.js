@@ -43,7 +43,9 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "app_finances_root",
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        app_my_account: "app_my_account@http://localhost:3002/remoteEntry.js",
+      },
       exposes: {
         "./Components": "./src/Components",
       },

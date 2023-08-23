@@ -46,7 +46,9 @@ module.exports = (_, argv) => ({
       remotes: {
         app_finances_root: "app_finances_root@http://localhost:3000/remoteEntry.js",
       },
-      exposes: {},
+      exposes: {
+        "./Pages": "./src/Pages",
+      },
       shared: {
         ...deps,
         react: {
