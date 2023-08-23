@@ -1,8 +1,7 @@
 import React from "react";
 import Input from "../../Components/Input";
 import { useForm, Controller } from "react-hook-form";
-
-// import { Container } from './styles';
+import { Container } from "@mui/material";
 
 export default function SignIn() {
   const { watch, handleSubmit, control } = useForm();
@@ -12,7 +11,7 @@ export default function SignIn() {
     console.log(data);
   }
   return (
-    <>
+    <Container>
       <form onSubmit={handleSubmit(send)}>
         <Controller
           control={control}
@@ -25,6 +24,6 @@ export default function SignIn() {
 
         <button type="submit">Enviar</button>
       </form>
-    </>
+    </Container>
   );
 }
