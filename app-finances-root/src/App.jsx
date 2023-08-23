@@ -3,10 +3,15 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 import Routes from "./Routes";
+import { AuthProvider } from "./Context/Auth";
 
-const App = () => (
-  <>
-    <Routes />
-  </>
-);
+const App = () => {
+  return (
+    <>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </>
+  );
+};
 ReactDOM.render(<App />, document.getElementById("app"));

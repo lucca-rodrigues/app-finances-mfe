@@ -45,6 +45,7 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       remotes: {
         app_my_account: "app_my_account@http://localhost:3002/remoteEntry.js",
+        app_transactions: "app_transactions@http://localhost:3001/remoteEntry.js",
       },
       exposes: {
         "./Components": "./src/Components",

@@ -49,7 +49,9 @@ module.exports = (_, argv) => ({
       name: "app_transactions",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Pages": "./src/Pages",
+      },
       shared: require("./package.json").dependencies,
     }),
     new HtmlWebPackPlugin({
