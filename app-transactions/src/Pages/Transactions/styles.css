@@ -37,24 +37,39 @@
   margin-top: 50px !important;
 }
 
-.transactions-list thead {
+/* .transactions-list thead {
   background: #ff6c24;
   height: 50px;
   border-radius: 5px;
-}
+} */
 .transactions-list thead th {
   background: #ff6c24;
-  height: 50px;
+  height: 30px;
   padding: 10px;
-  border-radius: 5px;
 }
 .transactions-list tbody {
-  background-color: #f2f2f2;
+  /* background-color: #f9f9f9; */
   width: 100% !important;
 }
 .transactions-list td {
-  background-color: #f2f2f2;
+  /* background-color: #f9f9f9; */
   padding: 10px !important;
-  border: 1px solid #777;
-  border-radius: 5px;
+  /* border: 1px solid #777; */
+  /* border-radius: 5px; */
+}
+
+tbody tr {
+  border-bottom: 5px solid #f2f2f2;
+  border-top: 5px solid #f2f2f2;
+  background-color: #fff;
+}
+
+.filter-month {
+  margin-top: 50px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+#element {
+  text-align: center;
 }

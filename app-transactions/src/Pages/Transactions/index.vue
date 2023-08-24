@@ -1,25 +1,28 @@
 <template>
   <section id="transactions">
     <div id="transactions-status">
-      <v-card id="card-balance" class="income">
+      <div id="card-balance" class="income">
         <span class="text-center">Previsão Entradas</span>
-      </v-card>
-      <v-card id="card-balance" class="outcome">
+      </div>
+      <div id="card-balance" class="outcome">
         <span class="text-center">Previsão Saídas</span>
-      </v-card>
-      <v-card id="card-balance" class="balance">
+      </div>
+      <div id="card-balance" class="balance">
         <span class="text-center">Saldo</span>
-      </v-card>
+      </div>
+    </div>
+    <div class="filter-month">
+      <div class="text-right"><span>Outubro</span> - <span>2023</span></div>
     </div>
 
     <table class="transactions-list">
       <thead class="transaction-labels">
         <tr>
-          <th v-for="(item, index) in transactionLabels" :key="index" class="text-left">{{ item }}</th>
+          <th v-for="(item, index) in transactionLabels" :key="index" class="text-center">{{ item }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in transactions" :key="item?.id">
+        <tr id="element" v-for="item in transactions" :key="item?.id">
           <td>{{ item.title }}</td>
           <td>{{ item.value }}</td>
           <td>{{ item.type_transaction }}</td>
