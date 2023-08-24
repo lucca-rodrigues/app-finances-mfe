@@ -27,14 +27,14 @@ export default {
   },
   methods: {
     async getAllTransactions() {
-      console.log("userToken in getAllTransactions:", this.userToken);
+      console.log("userToken in getAllTransactions:", this.token);
 
       const response = await api.get("/transactions/user/view", {
         headers: {
           Authorization: `Bearer Token ${this.token}`,
         },
       });
-      this.transactions = response.data;
+      this.transactions = response?.data;
       console.log("Response data:", response.data);
     },
 
