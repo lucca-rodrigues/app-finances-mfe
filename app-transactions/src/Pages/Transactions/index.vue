@@ -2,13 +2,22 @@
   <section id="transactions">
     <div id="transactions-status">
       <div id="card-balance" class="income">
-        <span class="text-center">Previsão Entradas</span>
+        <div class="text-center">
+          <span class="text-center">Previsão Entradas</span>
+          <p class="text-center">{{ income }}</p>
+        </div>
       </div>
       <div id="card-balance" class="outcome">
-        <span class="text-center">Previsão Saídas</span>
+        <div class="text-center">
+          <span class="text-center">Previsão Saídas</span>
+          <p class="text-center">{{ outcome }}</p>
+        </div>
       </div>
       <div id="card-balance" class="balance">
-        <span class="text-center">Saldo</span>
+        <div class="text-center">
+          <span class="text-center">Saldo</span>
+          <p class="text-center">{{ balance }}</p>
+        </div>
       </div>
     </div>
     <div class="filter-month">
@@ -40,6 +49,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import { getGlobalInfos } from "../../Utils";
+import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
 import { TransactionsService } from "../../Services";
 import "./styles.css";
 
@@ -61,6 +71,9 @@ export default {
         "Quantidade Atual",
         "Status",
       ],
+      income: null,
+      outcome: null,
+      balance: null,
     };
   },
   setup() {
@@ -80,7 +93,14 @@ export default {
       if (this.backendToken) {
         const response = await transactionsService.index(this.backendToken);
         this.transactions = response?.data;
+
+        this.getTransactionsStatus();
       }
+    },
+    getTransactionsStatus() {
+      this.income = getIncomeValue(this?.transactions);
+      this.outcome = getOutcomeValue(this?.transactions);
+      this.balance = getBalance(this.income, this?.transactions);
     },
   },
   mounted() {
