@@ -33,13 +33,13 @@
       <tbody>
         <tr id="element" v-for="item in transactions" :key="item?.id">
           <td>{{ item.title }}</td>
-          <td>{{ item.value }}</td>
+          <td>R$ {{ item.value }}</td>
           <td>{{ item.type_transaction }}</td>
           <td>{{ item.duo_date }}</td>
           <td>{{ item.payment_date }}</td>
           <td>{{ item.total_quantity }}</td>
           <td>{{ item.current_quantity }}</td>
-          <td>{{ item.status }}</td>
+          <td>{{ item.status === "pendding" ? "❌" : "✅" }}</td>
         </tr>
       </tbody>
     </table>

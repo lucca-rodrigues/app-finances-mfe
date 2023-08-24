@@ -8,8 +8,8 @@
 - Implementar indicador de quais ja estão finalizando
 
 ## BACK
-- Implementar paginação
-- Implementar filtro para mês e ano
+- Implementar paginação - OK
+- Implementar filtro para mês e ano - OK
 
 
 ## CI/CD
