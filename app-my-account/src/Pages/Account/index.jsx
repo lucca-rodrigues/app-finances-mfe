@@ -21,7 +21,7 @@ export default function Account(props) {
         <form onSubmit={handleSubmit(send)}>
           <Box>
             <h1>Form account here</h1>
-            {props.userToken}
+            {props.backendToken}
           </Box>
           <Box>
             <Controller

@@ -1,3 +1,3 @@
+import getCookie from "./getCookie";
 import setToken from "./setToken";
-
-export { setToken };
+export { getCookie, setToken };

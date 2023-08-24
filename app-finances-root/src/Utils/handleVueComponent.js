@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
-export default function HandleVueComponent({ element, ...props }) {
+export default function HandleVueComponent({ element, id, ...props }) {
   const componentRef = useRef(null);
 
   console.log("Props received in HandleVueComponent:", props);
   useEffect(() => {
-    element(componentRef.current, { ...props });
+    element(componentRef.current, props);
   }, []);
-  return <div ref={componentRef} id="transactions" oi="oi" userToken={props?.userToken}></div>;
+  return <div ref={componentRef} id={id} />;
 }
