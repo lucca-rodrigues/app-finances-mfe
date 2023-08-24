@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Vuejs Transactions</h1>
-    <p>Backend Token: {{ backendToken || "Token not found" }}</p>
+    <p>Backend test: {{ test || "Token not found" }}</p>
     <ul>
       <li v-for="item in transactions" :key="item?.id">
         {{ item.title }}
@@ -22,13 +22,15 @@ export default {
       transactions: [],
       globalInfos: null,
       backendToken: null,
+      test: null,
     };
   },
   setup() {
     const backendToken = ref(null);
 
     onMounted(() => {
-      backendToken.value = getCookie("backendToken");
+      const globalInfos = JSON.parse(getCookie("@app_myfinances"));
+      backendToken.value = globalInfos.backendToken;
     });
 
     return {
