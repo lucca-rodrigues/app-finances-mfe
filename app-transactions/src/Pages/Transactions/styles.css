@@ -1,0 +1,60 @@
+#transactions {
+  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+#card-balance {
+  display: flex;
+  width: 100%;
+  padding: 30px 0;
+  border-radius: 10px;
+  max-width: 250px;
+  justify-content: center;
+  color: #fff;
+}
+
+#transactions-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.balance {
+  background-color: orange;
+}
+
+.income {
+  background-color: green;
+}
+
+.outcome {
+  background-color: red;
+}
+
+.transactions-list {
+  width: 100%;
+  margin-top: 50px !important;
+}
+
+.transactions-list thead {
+  background: #ff6c24;
+  height: 50px;
+  border-radius: 5px;
+}
+.transactions-list thead th {
+  background: #ff6c24;
+  height: 50px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.transactions-list tbody {
+  background-color: #f2f2f2;
+  width: 100% !important;
+}
+.transactions-list td {
+  background-color: #f2f2f2;
+  padding: 10px !important;
+  border: 1px solid #777;
+  border-radius: 5px;
+}
