@@ -60,7 +60,6 @@ export default {
   data() {
     return {
       transactions: [],
-      backendToken: null,
       transactionLabels: [
         "Descrição",
         "Valor",

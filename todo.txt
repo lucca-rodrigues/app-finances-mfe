@@ -1,0 +1,12 @@
+
+## FRONT
+- Implementar tela de cadastro de despesas
+- Implementar tela de cadastro de usuários
+- Implementar tela de login
+- Implementar filtro pelo mês e ano
+- Implementar indicador de quantas ja estão pagas x quantas faltam
+- Implementar indicador de quais ja estão finalizando
+
+## BACK
+- Implementar paginação
+- Implementar filtro para mês e ano
