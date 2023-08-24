@@ -73,6 +73,7 @@ export default {
       income: null,
       outcome: null,
       balance: null,
+      nextPage: null,
     };
   },
   setup() {
@@ -91,7 +92,8 @@ export default {
     async getAllTransactions() {
       if (this.backendToken) {
         const response = await transactionsService.index(this.backendToken);
-        this.transactions = response?.data;
+        this.transactions = response?.data?.results;
+        this.nextPage = response?.data?.next;
 
         this.getTransactionsStatus();
       }
@@ -100,6 +102,8 @@ export default {
       this.income = getIncomeValue(this?.transactions);
       this.outcome = getOutcomeValue(this?.transactions);
       this.balance = getBalance(this.income, this?.transactions);
+
+      console.log("nextPage", this.nextPage);
     },
   },
   mounted() {
