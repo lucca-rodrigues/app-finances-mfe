@@ -13,7 +13,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import api from "../../Services/api";
-import { getCookie } from "../../Utils";
+import { getGlobalInfos } from "../../Utils";
 
 export default {
   name: "Transactions",
@@ -22,14 +22,13 @@ export default {
       transactions: [],
       globalInfos: null,
       backendToken: null,
-      test: null,
     };
   },
   setup() {
     const backendToken = ref(null);
 
     onMounted(() => {
-      const globalInfos = JSON.parse(getCookie("@app_myfinances"));
+      const globalInfos = getGlobalInfos();
       backendToken.value = globalInfos.backendToken;
     });
 
