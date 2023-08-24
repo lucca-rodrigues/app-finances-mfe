@@ -1,14 +1,12 @@
 <template>
-  <!-- <transactions></transactions> -->
-
-  <Transactions />
+  <div>
+    <div>Name: app-Vue</div>
+    <div>Framework: VueJS</div>
+    <div>Language: JavaScript</div>
+    <div>CSS: Empty CSS</div>
+    <Transactions />
+  </div>
 </template>
-<script>
-import Transactions from "./Pages/Transactions/index.vue";
-
-export default {
-  components: {
-    Transactions,
-  },
-};
+<script setup>
+import Transactions from "./Pages/Transactions/";
 </script>

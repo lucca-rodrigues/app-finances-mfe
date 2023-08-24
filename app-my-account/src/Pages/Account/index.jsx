@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Input } from "app_finances_root/Components";
 import { Container, Box, Stack } from "@mui/material";
 
-export default function Account() {
+export default function Account(props) {
   const { watch, handleSubmit, control } = useForm();
   const watchFields = watch();
 
@@ -21,6 +21,7 @@ export default function Account() {
         <form onSubmit={handleSubmit(send)}>
           <Box>
             <h1>Form account here</h1>
+            {props.userToken}
           </Box>
           <Box>
             <Controller

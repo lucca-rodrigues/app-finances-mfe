@@ -29,7 +29,7 @@ export default function Routes() {
     },
     {
       path: "/transactions",
-      element: <HandleVueComponent element={Transactions} />,
+      element: <HandleVueComponent element={Transactions} userToken={userToken} />,
     },
   ]);
 
