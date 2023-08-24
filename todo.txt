@@ -10,3 +10,9 @@
 ## BACK
 - Implementar paginação
 - Implementar filtro para mês e ano
+
+
+## CI/CD
+- Implementar e testar a build para os ambientes de DEV e PROD
+- Implementar esteira de CI/CD
+- Implementar cron para fazer commit e não perder dados do banco (Deve acessar uma branch de backup e commitar o arquivo lá)
