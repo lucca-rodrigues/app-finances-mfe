@@ -9,6 +9,17 @@
     <router-link v-if="isIndividualApp" to="/">⬅️ Voltar</router-link>
     <button v-else @click="redirectPage('/transactions')">⬅️ Voltar</button>
     <!-- <button @click="remove">Remove</button> -->
+    <form>
+      <input name="title" placeholder="Título" />
+      <input name="value" placeholder="Valor" />
+      <input name="type_transaction" placeholder="Tipo de transação" />
+      <input name="status" placeholder="Status" />
+      <input name="duo_date" placeholder="Data de vencimento" type="date" />
+      <input name="payment_date" placeholder="Data de pagamento" type="date" />
+      <input name="total_quantity" placeholder="Quantidade total" type="number" />
+      <input name="current_quantity" placeholder="Quantidade atual" type="number" />
+      <button stype="submit">Enviar</button>
+    </form>
   </div>
 </template>
 

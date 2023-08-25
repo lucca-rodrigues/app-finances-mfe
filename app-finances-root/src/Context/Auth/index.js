@@ -6,7 +6,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   // const [userToken, setUserToken] = useState(null);
   const backendToken =
-    "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2OTI5OTcyNDd9.XEMb0Oq5I3CYYMyFj5NLjfj9gSeWm4IdH6H343-CB7M";
+    "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2OTMxNzE2NzN9.iZitraiA0T9oN_4ge9QFpVSjU0ntdES7yJ-zM4wLXZs";
 
   const globalInfos = {
     backendToken,

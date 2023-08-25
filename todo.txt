@@ -6,6 +6,8 @@
 - Implementar filtro pelo mês e ano
 - Implementar indicador de quantas ja estão pagas x quantas faltam
 - Implementar indicador de quais ja estão finalizando
+- Implementar direcionamento entre front-ends - OK
+- Implementar compartilhamento de funções - OK
 
 ## BACK
 - Implementar paginação - OK
