@@ -15,7 +15,6 @@ const AppRoutes = () => {
         path="/transactions"
         element={
           <>
-            {/* <Configure /> */}
             <HandleVueComponent element={Transactions} id="transactions" route="/transactions" />
           </>
         }
@@ -24,7 +23,6 @@ const AppRoutes = () => {
         path="/transactions/new"
         element={
           <>
-            {/* <Configure /> */}
             <HandleVueComponent element={CreateTransaction} id="transactions" route="/transactions/new" />
           </>
         }

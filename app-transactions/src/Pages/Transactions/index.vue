@@ -22,7 +22,8 @@
     </div>
     <div class="filter-month">
       <router-link v-if="isIndividualApp" to="/new">📝 Criar novo</router-link>
-      <button v-else @click="dynamicProps.redirectDynamicPage('/transactions/new')">📝 Criar novo</button>
+      <!-- <button v-else @click="dynamicProps.redirectDynamicPage('/transactions/new')">📝 Criar novo</button> -->
+      <button v-else @click="redirectPage('/transactions/new')">📝 Criar novo</button>
       <div class="text-right"><span>Outubro</span> - <span>2023</span></div>
     </div>
 
@@ -55,7 +56,7 @@
 
 <script>
 import { ref, onMounted, inject } from "vue";
-import { getGlobalInfos, validateIndividualApp } from "../../Utils";
+import { getGlobalInfos, validateIndividualApp, setNavigationCookies } from "../../Utils";
 import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
 import { TransactionsService } from "../../Services";
 import "../../../src/globalStyles.css";
@@ -91,6 +92,10 @@ export default {
     const backendToken = ref(null);
     const isIndividualApp = validateIndividualApp();
 
+    const redirectPage = (path) => {
+      setNavigationCookies(path);
+    };
+
     onMounted(() => {
       const globalInfos = getGlobalInfos();
       backendToken.value = globalInfos.backendToken;
@@ -100,6 +105,7 @@ export default {
       dynamicProps,
       backendToken,
       isIndividualApp,
+      redirectPage,
     };
   },
   methods: {

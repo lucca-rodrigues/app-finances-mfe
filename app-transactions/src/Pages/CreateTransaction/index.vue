@@ -6,15 +6,16 @@
       ⬅️ Voltar
     </button> -->
     <!-- <button @click="dynamicProps.goBackPage()">⬅️ Voltar</button> -->
-    <button @click="redirectPage('/transactions')">⬅️ Teste cookie</button>
-    <button @click="remove">Remove</button>
+    <router-link v-if="isIndividualApp" to="/">⬅️ Voltar</router-link>
+    <button v-else @click="redirectPage('/transactions')">⬅️ Voltar</button>
+    <!-- <button @click="remove">Remove</button> -->
   </div>
 </template>
 
 <script>
 import { inject } from "vue";
 import Cookies from "js-cookie";
-import { validateIndividualApp } from "../../Utils";
+import { validateIndividualApp, setNavigationCookies } from "../../Utils";
 export default {
   name: "CreateTransaction",
   // watch: {
@@ -23,23 +24,23 @@ export default {
   //   },
   // },
   setup() {
-    const currentDomain = window.location.hostname;
+    // const currentDomain = window.location.hostname;
     const dynamicProps = inject("dynamicProps");
     const isIndividualApp = validateIndividualApp();
 
     const redirectPage = (path) => {
       // Cookies.set("app_myfinances_navigation", JSON.stringify(navigationInfo));
-      Cookies.set("app_myfinances_navigation", path);
+      // Cookies.set("app_myfinances_navigation", path);
+      setNavigationCookies(path);
     };
 
-    const remove = () => {
-      Cookies.remove("app_myfinances_navigation");
-    };
+    // const remove = () => {
+    //   Cookies.remove("app_myfinances_navigation");
+    // };
     return {
       dynamicProps,
       isIndividualApp,
       redirectPage,
-      remove,
     };
   },
 };
