@@ -40,6 +40,7 @@
           <td>{{ item.total_quantity }}</td>
           <td>{{ item.current_quantity }}</td>
           <td>{{ item.status === "pendding" ? "❌" : "✅" }}</td>
+          <td>⚙️</td>
         </tr>
       </tbody>
     </table>
@@ -73,6 +74,7 @@ export default {
         "Quantidade Total",
         "Quantidade Atual",
         "Status",
+        "Ações",
       ],
       income: null,
       outcome: null,
