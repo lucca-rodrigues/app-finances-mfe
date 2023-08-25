@@ -56,6 +56,7 @@ import { ref, onMounted } from "vue";
 import { getGlobalInfos } from "../../Utils";
 import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
 import { TransactionsService } from "../../Services";
+import "../../../src/globalStyles.css";
 import "./styles.css";
 
 const transactionsService = new TransactionsService();
