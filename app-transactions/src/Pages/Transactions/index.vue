@@ -43,6 +43,10 @@
         </tr>
       </tbody>
     </table>
+    <div class="text-center">
+      <button v-if="transactions.length < totalItems" @click="loadMore()">Carregar mais...</button>
+      <h5 v-if="transactions.length === totalItems">Não existem mais itens para serem carregados ...</h5>
+    </div>
   </section>
 </template>
 
@@ -74,6 +78,7 @@ export default {
       outcome: null,
       balance: null,
       nextPage: null,
+      totalItems: null,
     };
   },
   setup() {
@@ -89,13 +94,21 @@ export default {
     };
   },
   methods: {
+    async setPaginationData() {
+      this.transactions = response?.data?.results;
+      this.nextPage = response?.data?.next;
+      this.totalItems = response?.data?.count;
+    },
     async getAllTransactions() {
       if (this.backendToken) {
         // const response = await transactionsService.index(this.backendToken);
         const response = await transactionsService.findByPeriod({ backendToken: this.backendToken });
         this.transactions = response?.data?.results;
         this.nextPage = response?.data?.next;
+        this.totalItems = response?.data?.count;
 
+        console.log("totalItems", this.totalItems);
+        console.log("transactions", this.transactions.length);
         this.getTransactionsStatus();
       }
     },
@@ -103,8 +116,20 @@ export default {
       this.income = getIncomeValue(this?.transactions);
       this.outcome = getOutcomeValue(this?.transactions);
       this.balance = getBalance(this.income, this?.transactions);
+    },
 
-      console.log("nextPage", this.nextPage);
+    async loadMore() {
+      if (this.nextPage) {
+        const response = await transactionsService.getNextPage({
+          backendToken: this.backendToken,
+          nextPage: this.nextPage,
+        });
+        this.transactions = [...this.transactions, ...response?.data?.results];
+        this.nextPage = response?.data?.next;
+        this.totalItems = response?.data?.count;
+      }
+
+      console.log("clicou");
     },
   },
   mounted() {
