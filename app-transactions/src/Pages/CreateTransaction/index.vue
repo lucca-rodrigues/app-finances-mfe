@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>Create transactions Here</h1>
-    <!-- <router-link id="prev-page-transaction" to="/">⬅️ Voltar</router-link> -->
-    <!-- <button id="prev-page-transaction" to="/">⬅️ Voltar</button> -->
-    <button @click="redirectVuePage">⬅️ Voltar</button>
+    <button @click="dynamicProps.redirectDynamicPage(isIndividualApp ? '/' : '/transactions')">⬅️ Home</button>
+    <button @click="dynamicProps.goBackPage">⬅️ Voltar</button>
   </div>
 </template>
 
 <script>
 import { inject } from "vue";
+import { validateIndividualApp } from "../../Utils";
 export default {
   name: "CreateTransaction",
   // watch: {
@@ -17,10 +17,12 @@ export default {
   //   },
   // },
   setup() {
-    const redirectVuePage = inject("redirectVuePage");
+    const dynamicProps = inject("dynamicProps");
+    const isIndividualApp = validateIndividualApp();
 
     return {
-      redirectVuePage,
+      dynamicProps,
+      isIndividualApp,
     };
   },
 };

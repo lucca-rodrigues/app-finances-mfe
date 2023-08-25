@@ -21,7 +21,8 @@
       </div>
     </div>
     <div class="filter-month">
-      <!-- <router-link to="/new">📝 Criar novo</router-link> -->
+      <router-link v-if="isIndividualApp" to="/new">📝 Criar novo</router-link>
+      <button v-else @click="dynamicProps.redirectDynamicPage('/transactions/new')">📝 Criar novo</button>
       <div class="text-right"><span>Outubro</span> - <span>2023</span></div>
     </div>
 
@@ -53,8 +54,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { getGlobalInfos } from "../../Utils";
+import { ref, onMounted, inject } from "vue";
+import { getGlobalInfos, validateIndividualApp } from "../../Utils";
 import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
 import { TransactionsService } from "../../Services";
 import "../../../src/globalStyles.css";
@@ -86,7 +87,9 @@ export default {
     };
   },
   setup() {
+    const dynamicProps = inject("dynamicProps");
     const backendToken = ref(null);
+    const isIndividualApp = validateIndividualApp();
 
     onMounted(() => {
       const globalInfos = getGlobalInfos();
@@ -94,7 +97,9 @@ export default {
     });
 
     return {
+      dynamicProps,
       backendToken,
+      isIndividualApp,
     };
   },
   methods: {
