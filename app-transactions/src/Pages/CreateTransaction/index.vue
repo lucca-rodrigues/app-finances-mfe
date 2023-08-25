@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Create transactions Here</h1>
-    <!-- <router-link to="/">⬅️ Voltar</router-link> -->
+    <router-link id="prev-page-transaction" to="/">⬅️ Voltar</router-link>
   </div>
 </template>
 
