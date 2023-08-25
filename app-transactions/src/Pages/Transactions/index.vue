@@ -34,7 +34,8 @@
         <tr id="element" v-for="item in transactions" :key="item?.id">
           <td>{{ item.title }}</td>
           <td>R$ {{ item.value }}</td>
-          <td>{{ item.type_transaction }}</td>
+          <!-- <td>{{ item.type_transaction }}</td> -->
+          <td class="text-left">{{ item.type_transaction === "income" ? "🟢 Entrada" : "🔴 Saída" }}</td>
           <td>{{ item.duo_date }}</td>
           <td>{{ item.payment_date }}</td>
           <td>{{ item.total_quantity }}</td>
