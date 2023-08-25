@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export default function HandleVueComponent({ element, id, ...props }) {
+export default function HandleVueComponent({ element, id = "new-app", ...props }) {
   const componentRef = useRef(null);
 
   console.log("Props received in HandleVueComponent:", props);

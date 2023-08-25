@@ -1,5 +1,5 @@
 import Transactions from "../Pages/Transactions";
-import CreateTransactions from "../Pages/CreateTransaction";
+import CreateTransaction from "../Pages/CreateTransaction";
 
 const routes = [
   {
@@ -8,7 +8,7 @@ const routes = [
   },
   {
     path: "/new",
-    component: CreateTransactions,
+    component: CreateTransaction,
   },
 ];
 export default routes;

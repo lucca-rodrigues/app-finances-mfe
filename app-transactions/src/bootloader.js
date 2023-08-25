@@ -1,10 +1,3 @@
-// import { createApp } from "vue";
-// import "./globalStyles.css";
-
-// import App from "./App.vue";
-
-// createApp(App).mount("#transactions");
-
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
