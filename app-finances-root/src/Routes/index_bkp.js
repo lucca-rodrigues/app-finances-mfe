@@ -32,7 +32,6 @@ const App = () => {
     backendToken,
   };
 
-  // Salve o token como um cookie acessível em todos os subdomínios
   const currentDomain = window.location.hostname;
   document.cookie = `@app_myfinances=${JSON.stringify(globalInfos)}; domain=${currentDomain}; path=/`;
 
