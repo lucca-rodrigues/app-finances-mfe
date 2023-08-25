@@ -1,7 +1,5 @@
 <template>
-  <Transactions />
+  <router-view />
 </template>
 
-<script setup>
-import Transactions from "./Pages/Transactions";
-</script>
+<script setup></script>

@@ -1,15 +1,22 @@
-import { createApp } from "vue";
-import "./globalStyles.css";
+// import { createApp } from "vue";
+// import "./globalStyles.css";
 
+// import App from "./App.vue";
+
+// createApp(App).mount("#transactions");
+
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
-createApp(App).mount("#transactions");
+import "./globalStyles.css";
+import Routes from "./Routes";
 
-// import { createApp } from "vue";
-// import App from "./App.vue";
-// import Vuetify from "vuetify";
-// import "vuetify/dist/vuetify.min.css";
+const router = createRouter({
+  history: createWebHistory(),
+  routes: Routes,
+});
 
-// const app = createApp(App);
-// app.use(Vuetify);
-// app.mount("#transactions");
+const app = createApp(App);
+app.use(router);
+app.mount("#transactions");
