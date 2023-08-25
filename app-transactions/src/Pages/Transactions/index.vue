@@ -46,7 +46,7 @@
     </table>
     <div class="text-center">
       <button v-if="transactions.length < totalItems" @click="loadMore()">Carregar mais...</button>
-      <h5 v-if="transactions.length === totalItems">Não existem mais itens para serem carregados ...</h5>
+      <h5 v-else>Não existem mais itens para serem carregados ...</h5>
     </div>
   </section>
 </template>
