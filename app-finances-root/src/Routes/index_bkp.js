@@ -33,7 +33,7 @@ const App = () => {
   };
 
   const currentDomain = window.location.hostname;
-  document.cookie = `@app_myfinances=${JSON.stringify(globalInfos)}; domain=${currentDomain}; path=/`;
+  document.cookie = `app_myfinances=${JSON.stringify(globalInfos)}; domain=${currentDomain}; path=/`;
 
   const router = createBrowserRouter([
     {

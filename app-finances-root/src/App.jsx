@@ -2,16 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
-import Routes from "./Routes";
 import { AuthProvider } from "./Context/Auth";
+import { NavigationControllerProvider } from "./Context/NavigationController";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./Routes"; // Import the AppRoutes component
 
 const App = () => {
   return (
-    <>
-      <AuthProvider>
-        <Routes />
-      </AuthProvider>
-    </>
+    <BrowserRouter>
+      <NavigationControllerProvider>
+        <AuthProvider>
+          <AppRoutes /> {/* Render the AppRoutes component */}
+        </AuthProvider>
+      </NavigationControllerProvider>
+    </BrowserRouter>
   );
 };
+
 ReactDOM.render(<App />, document.getElementById("app"));

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HandleVueComponent({ element, id, ...props }) {
   const componentRef = useRef(null);
