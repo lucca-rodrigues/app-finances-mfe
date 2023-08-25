@@ -91,7 +91,8 @@ export default {
   methods: {
     async getAllTransactions() {
       if (this.backendToken) {
-        const response = await transactionsService.index(this.backendToken);
+        // const response = await transactionsService.index(this.backendToken);
+        const response = await transactionsService.findByPeriod({ backendToken: this.backendToken });
         this.transactions = response?.data?.results;
         this.nextPage = response?.data?.next;
 
