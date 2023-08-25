@@ -49,6 +49,7 @@ module.exports = (_, argv) => ({
       },
       exposes: {
         "./Components": "./src/Components",
+        "./Utils": "./src/Utils",
       },
       shared: {
         ...deps,

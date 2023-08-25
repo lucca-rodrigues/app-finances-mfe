@@ -6,24 +6,24 @@ import { Transactions, CreateTransaction } from "app_transactions/Pages";
 import { useAuth } from "../Context/Auth";
 import HandleVueComponent from "../Utils/handleVueComponent";
 
-function PrevPage() {
-  const navigate = useNavigate();
-  return (
-    <div>
-      <h1>Header</h1>
-      <button onClick={() => navigate(-1)}>⬅️ Voltar</button>
-    </div>
-  );
-}
-function Header() {
-  const navigate = useNavigate();
-  return (
-    <div>
-      <h1>Header</h1>
-      <button onClick={() => navigate("/transactions/new")}>📝 Criar novo</button>
-    </div>
-  );
-}
+// function PrevPage() {
+//   const navigate = useNavigate();
+//   return (
+//     <div>
+//       <h1>Header</h1>
+//       <button onClick={() => navigate(-1)}>⬅️ Voltar</button>
+//     </div>
+//   );
+// }
+// function Header() {
+//   const navigate = useNavigate();
+//   return (
+//     <div>
+//       <h1>Header</h1>
+//       <button onClick={() => navigate("/transactions/new")}>📝 Criar novo</button>
+//     </div>
+//   );
+// }
 
 const App = () => {
   const { backendToken } = useAuth();
@@ -57,7 +57,7 @@ const App = () => {
       path: "/transactions",
       element: (
         <>
-          <Header />
+          {/* <Header /> */}
           <HandleVueComponent element={Transactions} id="transactions" route="/transactions" />
         </>
       ),
@@ -66,7 +66,7 @@ const App = () => {
       path: "/transactions/new",
       element: (
         <>
-          <PrevPage />
+          {/* <PrevPage /> */}
           <HandleVueComponent element={CreateTransaction} id="transactions" route="/transactions/new" />,
         </>
       ),
