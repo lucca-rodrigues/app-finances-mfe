@@ -1,5 +1,8 @@
 <template>
-  <h1>Create transactions Here</h1>
+  <div>
+    <h1>Create transactions Here</h1>
+    <router-link to="/">⬅️ Voltar</router-link>
+  </div>
 </template>
 
 <script>

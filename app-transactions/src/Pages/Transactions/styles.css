@@ -68,6 +68,12 @@ tbody tr {
   margin-top: 50px;
   font-weight: 500;
   font-size: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+.filter-month :hover {
+  cursor: pointer;
 }
 
 #transaction-item {

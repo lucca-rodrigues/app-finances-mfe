@@ -45,3 +45,8 @@ th {
 .text-right {
   text-align: right;
 }
+
+a {
+  color: #ff6c24;
+  text-decoration: none;
+}

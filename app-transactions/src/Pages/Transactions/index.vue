@@ -21,6 +21,7 @@
       </div>
     </div>
     <div class="filter-month">
+      <router-link to="/new">📝 Criar novo</router-link>
       <div class="text-right"><span>Outubro</span> - <span>2023</span></div>
     </div>
 
