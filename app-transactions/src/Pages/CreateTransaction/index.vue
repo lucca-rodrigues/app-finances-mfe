@@ -10,15 +10,40 @@
     <button v-else @click="redirectPage('/transactions')">⬅️ Voltar</button>
     <!-- <button @click="remove">Remove</button> -->
     <form>
-      <input name="title" placeholder="Título" />
-      <input name="value" placeholder="Valor" />
-      <input name="type_transaction" placeholder="Tipo de transação" />
-      <input name="status" placeholder="Status" />
-      <input name="duo_date" placeholder="Data de vencimento" type="date" />
-      <input name="payment_date" placeholder="Data de pagamento" type="date" />
-      <input name="total_quantity" placeholder="Quantidade total" type="number" />
-      <input name="current_quantity" placeholder="Quantidade atual" type="number" />
-      <button stype="submit">Enviar</button>
+      <div class="container">
+        <div>
+          <span>Título</span>
+          <input name="title" teste="`Título`" />
+        </div>
+      </div>
+      <div class="container">
+        <div>
+          <span>Valor</span>
+          <input name="value" teste="Valor" />
+        </div>
+        <div>
+          <span>teste</span>
+          <input />
+        </div>
+        <!-- <input name="type_transaction" teste="Tipo de transação" /> -->
+
+        <!-- <select name="type_transaction">
+          <option value="income">Entrada</option>
+          <option value="outcome">Saída</option>
+        </select>
+        <input name="status" :teste="Status" /> -->
+      </div>
+      <!-- <div class="container">
+        <input name="duo_date" :teste="`Data de vencimento`" type="date" />
+
+        <input name="payment_date" :teste="`Data de pagamento`" type="date" />
+      </div>
+      <div class="container">
+        <input name="total_quantity" :teste="`Quantidade total`" type="number" />
+
+        <input name="current_quantity" :teste="`Quantidade atual`" type="number" />
+      </div> -->
+      <button class="button-send" type="submit">Enviar</button>
     </form>
   </div>
 </template>
@@ -26,6 +51,8 @@
 <script>
 import { inject } from "vue";
 import Cookies from "js-cookie";
+import { Input } from "../../Components";
+import "./styles.css";
 import { validateIndividualApp, setNavigationCookies } from "../../Utils";
 export default {
   name: "CreateTransaction",
