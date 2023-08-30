@@ -43,10 +43,13 @@
           <td>{{ item.total_quantity }}</td>
           <td>{{ item.current_quantity }}</td>
           <td>{{ item.status === "pendding" ? "❌" : "✅" }}</td>
-          <td>
-            <DropdownMenu title="⚙️" :items="dropdownItems">
+
+          <!-- <DropdownMenu title="⚙️" :items="dropdownItems">
               <template v-slot:default> </template>
-            </DropdownMenu>
+            </DropdownMenu> -->
+
+          <td @click="getSelectedItem(item)">
+            <DropdownMenu title="⚙️" :items="dropdownItems" :item="item"> </DropdownMenu>
           </td>
         </tr>
       </tbody>
@@ -95,11 +98,12 @@ export default {
       totalItems: null,
       showDropdown: null,
       dropdownItems: [
-        { text: "Editar", callback: () => console.log("Edit") },
-        { text: "Duplicar", callback: () => console.log("Duplicate") },
-        { text: "Remover", callback: () => console.log("delete") },
-        { text: "Sinalizar pagamento", callback: () => console.log("Check payment") },
+        { text: "Editar", callback: (item) => this.editItem(item) },
+        { text: "Duplicar", callback: (item) => this.duplicateTransaction(item) },
+        { text: "Remover", callback: (item) => this.removeTransaction(item) },
+        { text: "Finalizar pagamento", callback: (item) => this.checkTransaction(item) },
       ],
+      selectedItem: null,
     };
   },
   setup() {
@@ -136,15 +140,65 @@ export default {
 
     async getAllTransactions() {
       if (this.backendToken) {
-        // const response = await transactionsService.index(this.backendToken);
         const response = await transactionsService.findByPeriod({ backendToken: this.backendToken });
         this.transactions = response?.data?.results;
         this.nextPage = response?.data?.next;
         this.totalItems = response?.data?.count;
 
-        console.log("totalItems", this.totalItems);
-        console.log("transactions", this.transactions.length);
         this.getTransactionsStatus();
+      }
+    },
+
+    async checkTransaction() {
+      if (this.backendToken) {
+        const data = {
+          status: "done",
+          payment_date: new Date().toISOString().split("T")[0],
+        };
+
+        await transactionsService.updateTransaction({
+          backendToken: this.backendToken,
+          id: this.selectedItem.id,
+          data,
+        });
+
+        this.getAllTransactions();
+      }
+    },
+
+    async removeTransaction() {
+      if (this.backendToken) {
+        await transactionsService.delete({
+          backendToken: this.backendToken,
+          id: this.selectedItem.id,
+        });
+
+        this.getAllTransactions();
+      }
+    },
+
+    async duplicateTransaction() {
+      const originalDate = new Date(this.selectedItem.duo_date);
+      originalDate.setMonth(originalDate.getMonth() + 1);
+
+      if (this.backendToken && this.selectedItem) {
+        const data = {
+          ...this.selectedItem,
+          duo_date: originalDate.toISOString().split("T")[0],
+          payment_date: null,
+          status: "pendding",
+        };
+
+        await transactionsService.create({
+          backendToken: this.backendToken,
+          data,
+        });
+      }
+    },
+
+    async editItem() {
+      if (this.backendToken && this.selectedItem) {
+        this.dynamicProps.redirectDynamicPage(`/transactions/edit/${this.selectedItem.id}`);
       }
     },
 
@@ -152,6 +206,10 @@ export default {
       this.income = getIncomeValue(this?.transactions);
       this.outcome = getOutcomeValue(this?.transactions);
       this.balance = getBalance(this.income, this?.transactions);
+    },
+
+    getSelectedItem(item) {
+      this.selectedItem = item;
     },
 
     formatedDate(date) {
@@ -179,19 +237,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.dropdown {
-  cursor: pointer;
-}
-
-.dropdown-content {
-  display: block;
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-</style>

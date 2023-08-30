@@ -22,4 +22,14 @@ export default class TransactionsService {
     const response = await api.post(`/transactions`, data, getTokenHeaders(backendToken));
     return response;
   }
+
+  async updateTransaction({ backendToken, id, data }) {
+    const response = await api.patch(`/transactions/${id}`, data, getTokenHeaders(backendToken));
+    return response;
+  }
+
+  async delete({ backendToken, id }) {
+    const response = await api.delete(`/transactions/${id}`, getTokenHeaders(backendToken));
+    return response;
+  }
 }
