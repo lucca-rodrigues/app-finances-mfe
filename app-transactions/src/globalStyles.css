@@ -79,3 +79,18 @@ select {
   font-size: 20px;
   font-weight: 600;
 }
+
+.button-navigator {
+  background: transparent;
+  border: 1px solid #ff6c24;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.button-navigator:hover {
+  background: #ff6c24;
+  color: #fff;
+  transition: calc(0.3s);
+}

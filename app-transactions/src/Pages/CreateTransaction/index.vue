@@ -1,25 +1,25 @@
 <template>
-  <div>
-    <h1>Create transactions Here</h1>
+  <div class="card-create-item">
+    <h1>Criar um novo item</h1>
     <!-- <button @click="dynamicProps.redirectDynamicPage(isIndividualApp ? '/' : '/transactions')">⬅️ Home</button> -->
     <!-- <button @click="isIndividualApp ? dynamicProps.goBackPage() : dynamicProps.redirectDynamicPage('/transactions')">
       ⬅️ Voltar
     </button> -->
     <!-- <button @click="dynamicProps.goBackPage()">⬅️ Voltar</button> -->
     <router-link v-if="isIndividualApp" to="/">⬅️ Voltar</router-link>
-    <button v-else @click="redirectPage('/transactions')">⬅️ Voltar</button>
+    <button class="button-navigator" v-else @click="redirectPage('/transactions')">⬅️ Voltar</button>
     <!-- <button @click="remove">Remove</button> -->
     <form @submit.prevent="handleSubmit">
       <div class="container">
         <div>
           <span>Título</span>
-          <input v-model="data.title" name="title" />
+          <input v-model="data.title" name="title" placeholder="Nome do item" />
         </div>
       </div>
       <div class="container">
         <div>
           <span>Valor</span>
-          <input v-model="data.value" name="value" />
+          <input v-model="data.value" name="value" placeholder="49.90" />
         </div>
         <div>
           <span>Tipo de transação</span>
@@ -45,19 +45,18 @@
           <span> Data de pagamento </span>
           <input v-model="data.payment_date" name="payment_date" type="date" />
         </div>
-      </div>
-      <div class="container">
         <div>
           <span> Quantidade total</span>
-          <input v-model="data.total_quantity" name="total_quantity" type="number" />
+          <input v-model="data.total_quantity" name="total_quantity" type="number" placeholder="20" />
         </div>
 
         <div>
           <span>Quantidade atual </span>
-          <input v-model="data.current_quantity" name="current_quantity" type="number" />
+          <input v-model="data.current_quantity" name="current_quantity" type="number" placeholder="8" />
         </div>
       </div>
-      <button class="button-send" type="submit">Enviar</button>
+      <div class="container"></div>
+      <button class="button-send" type="submit">Cadastrar</button>
     </form>
   </div>
 </template>
@@ -103,7 +102,7 @@ export default {
     const data = ref({
       title: "",
       value: "",
-      type_transaction: "income",
+      type_transaction: "outcome",
       status: "pendding",
       duo_date: "",
       payment_date: "",
@@ -135,7 +134,6 @@ export default {
         current_quantity,
       };
 
-      console.log("data", data);
       await transactionsService.create({
         data,
         backendToken: this.backendToken,

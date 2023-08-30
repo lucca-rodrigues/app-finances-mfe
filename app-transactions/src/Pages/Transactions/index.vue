@@ -23,7 +23,7 @@
     <div class="filter-month">
       <router-link v-if="isIndividualApp" to="/new">📝 Criar novo</router-link>
       <!-- <button v-else @click="dynamicProps.redirectDynamicPage('/transactions/new')">📝 Criar novo</button> -->
-      <button v-else @click="redirectPage('/transactions/new')">📝 Criar novo</button>
+      <button class="button-navigator" v-else @click="redirectPage('/transactions/new')">📝 Criar novo</button>
       <div class="text-right"><span>Outubro</span> - <span>2023</span></div>
     </div>
 

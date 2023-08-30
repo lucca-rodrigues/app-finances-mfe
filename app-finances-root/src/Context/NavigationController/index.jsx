@@ -16,7 +16,7 @@ const NavigationControllerProvider = ({ children }) => {
         Cookies.remove("app_myfinances_navigation");
         navigate(updatedNavigation);
       }
-    }, 1000);
+    }, 1);
 
     return () => clearInterval(interval);
   }, [navigate, storedNavigation]);
