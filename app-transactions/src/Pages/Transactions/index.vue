@@ -4,19 +4,19 @@
       <div id="card-balance" class="income">
         <div class="text-center">
           <span class="text-center">Previsão Entradas</span>
-          <p class="text-center">{{ income }}</p>
+          <p class="text-center">{{ formatCurrencyValue(income) }}</p>
         </div>
       </div>
       <div id="card-balance" class="outcome">
         <div class="text-center">
           <span class="text-center">Previsão Saídas</span>
-          <p class="text-center">{{ outcome }}</p>
+          <p class="text-center">{{ formatCurrencyValue(outcome) }}</p>
         </div>
       </div>
       <div id="card-balance" class="balance">
         <div class="text-center">
           <span class="text-center">Saldo</span>
-          <p class="text-center">{{ balance }}</p>
+          <p class="text-center">{{ formatCurrencyValue(balance) }}</p>
         </div>
       </div>
     </div>
@@ -36,10 +36,10 @@
       <tbody>
         <tr id="transaction-item" v-for="item in transactions" :key="item?.id">
           <td>{{ item.title }}</td>
-          <td>R$ {{ item.value }}</td>
+          <td>{{ formatCurrencyValue(item.value) }}</td>
           <td class="text-left">{{ item.type_transaction === "income" ? "🟢 Entrada" : "🔴 Saída" }}</td>
-          <td>{{ item.duo_date }}</td>
-          <td>{{ item.payment_date }}</td>
+          <td>{{ formatedDate(item.duo_date) }}</td>
+          <td>{{ formatedDate(item.payment_date) }}</td>
           <td>{{ item.total_quantity }}</td>
           <td>{{ item.current_quantity }}</td>
           <td>{{ item.status === "pendding" ? "❌" : "✅" }}</td>
@@ -61,6 +61,7 @@ import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
 import { TransactionsService } from "../../Services";
 import "../../../src/globalStyles.css";
 import "./styles.css";
+import { formatCurrency, formatDate } from "../../Utils";
 
 const transactionsService = new TransactionsService();
 
@@ -95,6 +96,9 @@ export default {
     const redirectPage = (path) => {
       setNavigationCookies(path);
     };
+    const formatCurrencyValue = (value) => {
+      return formatCurrency(value);
+    };
 
     onMounted(() => {
       const globalInfos = getGlobalInfos();
@@ -106,6 +110,7 @@ export default {
       backendToken,
       isIndividualApp,
       redirectPage,
+      formatCurrencyValue,
     };
   },
   methods: {
@@ -114,6 +119,7 @@ export default {
       this.nextPage = response?.data?.next;
       this.totalItems = response?.data?.count;
     },
+
     async getAllTransactions() {
       if (this.backendToken) {
         // const response = await transactionsService.index(this.backendToken);
@@ -127,10 +133,15 @@ export default {
         this.getTransactionsStatus();
       }
     },
+
     getTransactionsStatus() {
       this.income = getIncomeValue(this?.transactions);
       this.outcome = getOutcomeValue(this?.transactions);
       this.balance = getBalance(this.income, this?.transactions);
+    },
+
+    formatedDate(date) {
+      return formatDate(date);
     },
 
     async loadMore() {
@@ -143,8 +154,6 @@ export default {
         this.nextPage = response?.data?.next;
         this.totalItems = response?.data?.count;
       }
-
-      console.log("clicou");
     },
   },
   mounted() {

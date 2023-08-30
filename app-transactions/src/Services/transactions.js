@@ -5,7 +5,7 @@ export default class TransactionsService {
     return response;
   }
 
-  async findByPeriod({ year = 2023, month = 7, offset = 0, limit = 50, backendToken }) {
+  async findByPeriod({ year = 2023, month = 9, offset = 0, limit = 50, backendToken }) {
     const response = await api.get(
       `/transactions/user/view/period?year=${year}&month=${month}&limit=${limit}&offset=${offset}`,
       getTokenHeaders(backendToken)
@@ -15,6 +15,11 @@ export default class TransactionsService {
 
   async getNextPage({ backendToken, nextPage }) {
     const response = await api.get(`${nextPage}`, getTokenHeaders(backendToken));
+    return response;
+  }
+
+  async create({ backendToken, data }) {
+    const response = await api.post(`/transactions`, data, getTokenHeaders(backendToken));
     return response;
   }
 }

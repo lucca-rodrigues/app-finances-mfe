@@ -1,8 +1,9 @@
 .container {
   display: flex;
-  gap: 25px;
+  gap: 20px;
 }
 
 .container div {
   width: 100%;
+  display: grid;
 }

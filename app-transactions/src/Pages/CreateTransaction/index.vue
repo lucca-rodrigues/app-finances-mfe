@@ -29,8 +29,11 @@
           </select>
         </div>
         <div>
-          <span> Status </span>
-          <input v-model="data.status" name="status" :teste="Status" />
+          <span>Status</span>
+          <select v-model="data.status" name="type_transaction">
+            <option value="pendding">Pendente</option>
+            <option value="finish">Finalizado</option>
+          </select>
         </div>
       </div>
       <div class="container">
@@ -40,7 +43,7 @@
         </div>
         <div>
           <span> Data de pagamento </span>
-          <input v-model="data.payment_date" name="payment_date" :teste="``" type="date" />
+          <input v-model="data.payment_date" name="payment_date" type="date" />
         </div>
       </div>
       <div class="container">
@@ -60,29 +63,42 @@
 </template>
 
 <script>
-import { inject, ref } from "vue";
-import Cookies from "js-cookie";
-import Input from "../../Components/Input";
+import { inject, onMounted, ref } from "vue";
+
 import "./styles.css";
-import { validateIndividualApp, setNavigationCookies } from "../../Utils";
+import { validateIndividualApp, setNavigationCookies, getGlobalInfos } from "../../Utils";
+import { TransactionsService } from "../../Services";
+
+const transactionsService = new TransactionsService();
+
 export default {
   name: "CreateTransaction",
-  // watch: {
-  //   $route(to, from) {
-  //     console.log(to, from);
-  //   },
-  // },
 
+  data() {
+    return {
+      formattedValue: "",
+    };
+  },
+
+  computed: {
+    numericValue() {
+      return this.formattedValue.replace(/\D/g, "");
+    },
+  },
   setup() {
     // const currentDomain = window.location.hostname;
     const dynamicProps = inject("dynamicProps");
     const isIndividualApp = validateIndividualApp();
+    const backendToken = ref(null);
 
     const redirectPage = (path) => {
-      // Cookies.set("app_myfinances_navigation", JSON.stringify(navigationInfo));
-      // Cookies.set("app_myfinances_navigation", path);
       setNavigationCookies(path);
     };
+
+    onMounted(() => {
+      const globalInfos = getGlobalInfos();
+      backendToken.value = globalInfos.backendToken;
+    });
 
     const data = ref({
       title: "",
@@ -100,13 +116,32 @@ export default {
       isIndividualApp,
       redirectPage,
       data,
+      backendToken,
     };
   },
   methods: {
-    handleSubmit() {
-      const data = this.data;
+    async handleSubmit() {
+      const { title, value, type_transaction, status, duo_date, payment_date, total_quantity, current_quantity } =
+        this.data;
+
+      const data = {
+        title,
+        value: Number(value),
+        type_transaction,
+        status,
+        duo_date,
+        payment_date,
+        total_quantity,
+        current_quantity,
+      };
 
       console.log("data", data);
+      await transactionsService.create({
+        data,
+        backendToken: this.backendToken,
+      });
+
+      this.isIndividualApp ? this.dynamicProps.goBackPage() : this.redirectPage("/transactions");
     },
   },
 };
