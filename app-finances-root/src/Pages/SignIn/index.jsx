@@ -10,7 +10,7 @@ export default function SignIn() {
   const { navigate } = useNavigationController();
   const watchFields = watch();
 
-  function send(data) {
+  function submitForm(data) {
     console.log(data);
     navigate("/transactions");
   }
@@ -36,7 +36,7 @@ export default function SignIn() {
           <Typography mb={5} variant="h1" fontSize={20} fontWeight="bold">
             Acesse sua conta
           </Typography>
-          <form onSubmit={handleSubmit(send)}>
+          <form onSubmit={handleSubmit(submitForm)}>
             <Box mb={2}>
               <Controller
                 control={control}

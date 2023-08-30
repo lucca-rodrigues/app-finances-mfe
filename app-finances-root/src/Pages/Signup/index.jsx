@@ -12,7 +12,7 @@ function Signup() {
   const { navigate } = useNavigationController();
   const watchFields = watch();
 
-  function send(data) {
+  function submitForm(data) {
     console.log(data);
   }
   return (
@@ -37,7 +37,7 @@ function Signup() {
           <Typography mb={5} variant="h1" fontSize={20} fontWeight="bold">
             Crie sua conta
           </Typography>
-          <form onSubmit={handleSubmit(send)}>
+          <form onSubmit={handleSubmit(submitForm)}>
             <Box mb={2}>
               <Controller
                 control={control}
