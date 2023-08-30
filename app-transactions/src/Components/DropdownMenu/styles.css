@@ -1,0 +1,27 @@
+.dropdown {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  text-align: left;
+  min-width: 200px;
+  border-radius: 5px;
+  line-height: 35px !important;
+  font-weight: 600;
+}
+
+.dropdown-content li {
+  padding: 0px 20px;
+}
+
+.dropdown-content li:hover {
+  background-color: #ff6c24;
+  color: #fff;
+}

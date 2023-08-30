@@ -43,7 +43,11 @@
           <td>{{ item.total_quantity }}</td>
           <td>{{ item.current_quantity }}</td>
           <td>{{ item.status === "pendding" ? "❌" : "✅" }}</td>
-          <td>⚙️</td>
+          <td>
+            <DropdownMenu title="⚙️" :items="dropdownItems">
+              <template v-slot:default> </template>
+            </DropdownMenu>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -62,11 +66,14 @@ import { TransactionsService } from "../../Services";
 import "../../../src/globalStyles.css";
 import "./styles.css";
 import { formatCurrency, formatDate } from "../../Utils";
-
+import { DropdownMenu } from "../../Components";
 const transactionsService = new TransactionsService();
 
 export default {
   name: "Transactions",
+  components: {
+    DropdownMenu,
+  },
   data() {
     return {
       transactions: [],
@@ -86,6 +93,13 @@ export default {
       balance: null,
       nextPage: null,
       totalItems: null,
+      showDropdown: null,
+      dropdownItems: [
+        { text: "Editar", callback: () => console.log("Edit") },
+        { text: "Duplicar", callback: () => console.log("Duplicate") },
+        { text: "Remover", callback: () => console.log("delete") },
+        { text: "Sinalizar pagamento", callback: () => console.log("Check payment") },
+      ],
     };
   },
   setup() {
@@ -155,9 +169,29 @@ export default {
         this.totalItems = response?.data?.count;
       }
     },
+
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    },
   },
   mounted() {
     this.getAllTransactions();
   },
 };
 </script>
+
+<style scoped>
+.dropdown {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+</style>

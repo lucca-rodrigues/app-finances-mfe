@@ -1,3 +1,3 @@
 import InputComponent from "./Input";
-
-export { InputComponent };
+import DropdownMenu from "./DropdownMenu";
+export { InputComponent, DropdownMenu };
