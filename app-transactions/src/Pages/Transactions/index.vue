@@ -28,10 +28,10 @@
         <span @click="showSelector('showYearSelector')">{{ selectedYear }}</span>
       </div>
     </div>
-    <div v-if="showMonthSelector" class="filter-month">
+    <div v-if="showMonthSelector" class="filters-select">
       <div class="container">
         <span>Selecione o mês</span>
-        <select v-model="selectedMonth" name="type_transaction">
+        <select v-model="selectedMonth" name="month">
           <option v-for="item in months" :key="item.id" :value="item.id" @click="showSelector('showMonthSelector')">
             {{ item.name }}
           </option>
@@ -39,10 +39,10 @@
       </div>
     </div>
 
-    <div v-if="showYearSelector" class="filter-month">
+    <div v-if="showYearSelector" class="filters-select year">
       <div class="container">
         <span>Selecione o ano</span>
-        <select v-model="selectedYear" name="type_transaction">
+        <select v-model="selectedYear" name="year">
           <option v-for="item in years" :key="item.id" :value="item" @click="showSelector('showYearSelector')">
             {{ item }}
           </option>

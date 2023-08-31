@@ -96,7 +96,7 @@ tbody tr {
 }
 
 .container {
-  display: grid !important;
+  display: block !important;
   gap: 20px;
 }
 
@@ -107,11 +107,17 @@ tbody tr {
   font-size: 13px !important;
 }
 
-.filter-month > .container {
+.filters-select > .container {
   max-width: 200px;
   float: right;
   margin-bottom: 20px;
+  margin-top: 20px;
   text-align: right;
   font-size: 15px;
   min-width: 200px;
+}
+
+.filters-select > .container > select {
+  height: auto !important;
+  width: 100% !important;
 }
