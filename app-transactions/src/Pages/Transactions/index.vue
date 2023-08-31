@@ -205,7 +205,7 @@ export default {
       console.log("editar item");
       if (this.backendToken && this.selectedItem) {
         this.store.dispatch("updateSelectedItem", this.selectedItem);
-        this.router.push("/edit");
+        this.isIndividualApp ? this.router.push("/edit") : this.redirectPage("/transactions/edit");
       }
     },
 

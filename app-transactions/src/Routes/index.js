@@ -12,9 +12,7 @@ const routes = [
   },
   {
     path: "/edit",
-    // path: "/edit/:id",
     component: EditTransaction,
-    // props: (route) => ({ id: route.params.id }),
   },
 ];
 

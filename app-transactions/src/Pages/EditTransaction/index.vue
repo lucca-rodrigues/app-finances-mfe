@@ -62,7 +62,7 @@ import { defineComponent, computed, onMounted, inject, ref, onBeforeMount } from
 import { useStore } from "vuex";
 import { TransactionsService } from "../../Services";
 import "./styles.css";
-import { getGlobalInfos, validateIndividualApp } from "../../Utils";
+import { getGlobalInfos, setNavigationCookies, validateIndividualApp } from "../../Utils";
 
 const transactionsService = new TransactionsService();
 
@@ -85,9 +85,6 @@ export default defineComponent({
     });
 
     onBeforeMount(() => {
-      // loadSelectedItem();
-      console.log("id", id.value);
-      console.log("selectedItem", selectedItem);
       if (!id.value || !selectedItem) {
         isIndividualApp ? dynamicProps.goBackPage() : redirectPage("/transactions");
       }

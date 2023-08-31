@@ -28,7 +28,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/transactions/edit/:id"
+        path="/transactions/edit"
         element={
           <>
             <HandleVueComponent element={EditTransaction} id="transactions" route="/transactions/edit" />
