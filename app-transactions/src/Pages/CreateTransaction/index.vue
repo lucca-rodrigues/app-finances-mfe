@@ -73,17 +73,6 @@ const transactionsService = new TransactionsService();
 export default {
   name: "CreateTransaction",
 
-  data() {
-    return {
-      formattedValue: "",
-    };
-  },
-
-  computed: {
-    numericValue() {
-      return this.formattedValue.replace(/\D/g, "");
-    },
-  },
   setup() {
     // const currentDomain = window.location.hostname;
     const dynamicProps = inject("dynamicProps");

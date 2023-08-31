@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.container div {
+  width: 100%;
+  display: grid;
+  margin-bottom: 10px;
+  font-size: 13px;
+  /* font-weight: 600; */
+}
+
+/* body {
+  background-color: #ff6c24;
+} */
+#transactions {
+  background: #fff;
+  padding: 50px 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 88vh;
+}
+
+.card-create-item {
+  padding: 30px;
+}
+
+.button-navigator {
+  margin-bottom: 50px;
+}
+
+.button-send {
+  float: right;
+  margin-top: 50px;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home, SignIn, Signup } from "../Pages";
 import { Account } from "app_my_account/Pages";
-import { Transactions, CreateTransaction } from "app_transactions/Pages";
+import { Transactions, CreateTransaction, EditTransaction } from "app_transactions/Pages";
 import { HandleVueComponent } from "../Utils";
 const AppRoutes = () => {
   return (
@@ -24,6 +24,14 @@ const AppRoutes = () => {
         element={
           <>
             <HandleVueComponent element={CreateTransaction} id="transactions" route="/transactions/new" />
+          </>
+        }
+      />
+      <Route
+        path="/transactions/edit/:id"
+        element={
+          <>
+            <HandleVueComponent element={EditTransaction} id="transactions" route="/transactions/edit" />
           </>
         }
       />

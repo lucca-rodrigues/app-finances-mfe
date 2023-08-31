@@ -98,10 +98,10 @@ export default {
       totalItems: null,
       showDropdown: null,
       dropdownItems: [
-        { text: "Editar", callback: (item) => this.editItem(item) },
-        { text: "Duplicar", callback: (item) => this.duplicateTransaction(item) },
-        { text: "Remover", callback: (item) => this.removeTransaction(item) },
-        { text: "Finalizar pagamento", callback: (item) => this.checkTransaction(item) },
+        { text: "Editar", callback: () => this.editItem() },
+        { text: "Duplicar", callback: () => this.duplicateTransaction() },
+        { text: "Remover", callback: () => this.removeTransaction() },
+        { text: "Finalizar pagamento", callback: () => this.checkTransaction() },
       ],
       selectedItem: null,
     };
@@ -118,9 +118,15 @@ export default {
       return formatCurrency(value);
     };
 
-    onMounted(() => {
+    // onMounted(() => {
+    //   const globalInfos = getGlobalInfos();
+    //   backendToken.value = globalInfos.backendToken;
+    // });
+
+    onMounted(async () => {
       const globalInfos = getGlobalInfos();
-      backendToken.value = globalInfos.backendToken;
+      this.backendToken = globalInfos.backendToken;
+      await this.test(); // Chame o método para obter os detalhes da transação após ter o token definido
     });
 
     return {
@@ -198,7 +204,15 @@ export default {
 
     async editItem() {
       if (this.backendToken && this.selectedItem) {
-        this.dynamicProps.redirectDynamicPage(`/transactions/edit/${this.selectedItem.id}`);
+        // this.dynamicProps.redirectDynamicPage(`/transactions/edit/${this.selectedItem.id}`, {
+        //   selectedItem: this.selectedItem,
+        // });
+
+        this.isIndividualApp
+          ? this.dynamicProps.redirectDynamicPage(`/edit/${this.selectedItem.id}`, {
+              selectedItem: this.selectedItem,
+            })
+          : this.redirectPage(`/transactions/edit/${this.selectedItem.id}`);
       }
     },
 

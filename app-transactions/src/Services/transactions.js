@@ -13,6 +13,11 @@ export default class TransactionsService {
     return response;
   }
 
+  async findById({ id, backendToken }) {
+    const response = await api.get(`/transactions/${id}`, getTokenHeaders(backendToken));
+    return response;
+  }
+
   async getNextPage({ backendToken, nextPage }) {
     const response = await api.get(`${nextPage}`, getTokenHeaders(backendToken));
     return response;
