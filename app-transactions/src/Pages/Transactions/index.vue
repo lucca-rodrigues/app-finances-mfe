@@ -99,6 +99,11 @@ export default {
   components: {
     DropdownMenu,
   },
+  watch: {
+    selectedYear: "getAllTransactions",
+    selectedMonth: "getAllTransactions",
+  },
+
   data() {
     return {
       transactions: [],
@@ -173,7 +178,11 @@ export default {
 
     async getAllTransactions() {
       if (this.backendToken) {
-        const response = await transactionsService.findByPeriod({ backendToken: this.backendToken });
+        const response = await transactionsService.findByPeriod({
+          backendToken: this.backendToken,
+          year: this.selectedYear,
+          month: this.selectedMonth,
+        });
         this.transactions = response?.data?.results;
         this.nextPage = response?.data?.next;
         this.totalItems = response?.data?.count;
