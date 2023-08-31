@@ -95,19 +95,19 @@ tbody tr {
   cursor: pointer;
 }
 
-.container {
+.page-transactions .container {
   display: block !important;
   gap: 20px;
 }
 
-.container div {
+.page-transactions .container div {
   width: 100%;
   display: grid;
   margin-bottom: 10px;
   font-size: 13px !important;
 }
 
-.filters-select > .container {
+.page-transactions .filters-select > .container {
   max-width: 200px;
   float: right;
   margin-bottom: 20px;

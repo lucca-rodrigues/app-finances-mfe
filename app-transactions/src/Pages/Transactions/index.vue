@@ -1,5 +1,5 @@
 <template>
-  <section id="transactions">
+  <section id="transactions" class="page-transactions">
     <div id="transactions-status">
       <div id="card-balance" class="income">
         <div class="text-center">
