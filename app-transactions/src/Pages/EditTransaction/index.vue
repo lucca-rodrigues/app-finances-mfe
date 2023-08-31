@@ -79,16 +79,6 @@ export default defineComponent({
       setNavigationCookies(path);
     };
 
-    const handleSubmit = async () => {
-      await transactionsService.updateTransaction({
-        backendToken: backendToken,
-        id: id,
-        data: selectedItem,
-      });
-
-      isIndividualApp ? dynamicProps.goBackPage() : redirectPage("/transactions");
-    };
-
     onMounted(() => {
       const globalInfos = getGlobalInfos();
       backendToken.value = globalInfos.backendToken;
@@ -110,22 +100,18 @@ export default defineComponent({
       selectedItem,
       backendToken,
       dynamicProps,
-      handleSubmit,
     };
   },
-  // methods: {
-  //   async handleSubmit() {
-  //     await transactionsService.updateTransaction({
-  //       backendToken: backendToken,
-  //       id: id,
-  //       data: selectedItem,
-  //     });
+  methods: {
+    async handleSubmit() {
+      await transactionsService.updateTransaction({
+        backendToken: this.backendToken,
+        id: this.id,
+        data: { ...this.selectedItem },
+      });
 
-  //     isIndividualApp ? dynamicProps.goBackPage() : redirectPage("/transactions");
-  //   },
-  // },
-  // mounted() {
-  //   console.log("selectedItem", this.selectedItem);
-  // },
+      this.isIndividualApp ? this.dynamicProps.goBackPage() : this.redirectPage("/transactions");
+    },
+  },
 });
 </script>
