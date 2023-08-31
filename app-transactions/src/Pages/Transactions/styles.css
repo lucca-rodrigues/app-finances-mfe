@@ -94,3 +94,24 @@ tbody tr {
 #transaction-item:hover {
   cursor: pointer;
 }
+
+.container {
+  display: grid !important;
+  gap: 20px;
+}
+
+.container div {
+  width: 100%;
+  display: grid;
+  margin-bottom: 10px;
+  font-size: 13px !important;
+}
+
+.filter-month > .container {
+  max-width: 200px;
+  float: right;
+  margin-bottom: 20px;
+  text-align: right;
+  font-size: 15px;
+  min-width: 200px;
+}

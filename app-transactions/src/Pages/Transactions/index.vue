@@ -22,9 +22,32 @@
     </div>
     <div class="filter-month">
       <router-link v-if="isIndividualApp" to="/new">📝 Criar novo</router-link>
-      <!-- <button v-else @click="dynamicProps.redirectDynamicPage('/transactions/new')">📝 Criar novo</button> -->
       <button class="button-navigator" v-else @click="redirectPage('/transactions/new')">📝 Criar novo</button>
-      <div class="text-right"><span>Outubro</span> - <span>2023</span></div>
+      <div class="text-right">
+        <span @click="showSelector('showMonthSelector')">{{ getMonth(selectedMonth) }}</span> -
+        <span @click="showSelector('showYearSelector')">{{ selectedYear }}</span>
+      </div>
+    </div>
+    <div v-if="showMonthSelector" class="filter-month">
+      <div class="container">
+        <span>Selecione o mês</span>
+        <select v-model="selectedMonth" name="type_transaction">
+          <option v-for="item in months" :key="item.id" :value="item.id" @click="showSelector('showMonthSelector')">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div v-if="showYearSelector" class="filter-month">
+      <div class="container">
+        <span>Selecione o ano</span>
+        <select v-model="selectedYear" name="type_transaction">
+          <option v-for="item in years" :key="item.id" :value="item" @click="showSelector('showYearSelector')">
+            {{ item }}
+          </option>
+        </select>
+      </div>
     </div>
 
     <table class="transactions-list">
@@ -61,14 +84,14 @@
 import { ref, onMounted, inject } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { DropdownMenu } from "../../Components";
 
-import { getGlobalInfos, validateIndividualApp, setNavigationCookies } from "../../Utils";
-import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
+import { getGlobalInfos, validateIndividualApp, setNavigationCookies, formatCurrency, formatDate } from "../../Utils";
+import { getBalance, getIncomeValue, getOutcomeValue, monthsList, yearsList } from "./Functions";
 import { TransactionsService } from "../../Services";
 import "../../../src/globalStyles.css";
 import "./styles.css";
-import { formatCurrency, formatDate } from "../../Utils";
-import { DropdownMenu } from "../../Components";
+
 const transactionsService = new TransactionsService();
 
 export default {
@@ -103,6 +126,12 @@ export default {
         { text: "Finalizar pagamento", callback: () => this.checkTransaction() },
       ],
       selectedItem: null,
+      months: monthsList,
+      years: yearsList(),
+      selectedYear: new Date().getFullYear(),
+      selectedMonth: new Date().getMonth() + 1,
+      showYearSelector: false,
+      showMonthSelector: false,
     };
   },
   setup() {
@@ -237,6 +266,22 @@ export default {
 
     toggleDropdown() {
       this.isOpen = !this.isOpen;
+    },
+
+    getMonth(month) {
+      return this.months.find((item) => item.id === month)?.name;
+    },
+
+    showSelector(item) {
+      if (item === "showMonthSelector") {
+        this.showMonthSelector = !this.showMonthSelector;
+        this.showYearSelector = false;
+      }
+
+      if (item === "showYearSelector") {
+        this.showYearSelector = !this.showYearSelector;
+        this.showMonthSelector = false;
+      }
     },
   },
   mounted() {
