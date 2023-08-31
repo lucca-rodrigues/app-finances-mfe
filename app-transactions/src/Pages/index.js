@@ -6,6 +6,7 @@ import EditTransactionPage from "./EditTransaction";
 import { redirectVuePage, redirectDynamicPage, goBackPage } from "app_finances_root/Utils";
 import Routes from "../Routes";
 import { createRouter, createWebHistory } from "vue-router";
+import store from "../Context/store";
 
 const dynamicProps = {
   redirectVuePage,
@@ -22,6 +23,7 @@ export function Transactions(el, props) {
   const app = createApp(TransactionsPage);
   app.props = props;
   app.provide("dynamicProps", dynamicProps);
+  app.use(store);
   app.use(router);
   app.mount(el);
 }
@@ -30,6 +32,7 @@ export function CreateTransaction(el, props) {
   const app = createApp(CreateTransactionPage);
   app.props = props;
   app.provide("dynamicProps", dynamicProps);
+  app.use(store);
   app.use(router);
   app.mount(el);
 }
@@ -38,6 +41,7 @@ export function EditTransaction(el, props) {
   const app = createApp(EditTransactionPage);
   app.props = props;
   app.provide("dynamicProps", dynamicProps);
+  app.use(store);
   app.use(router);
   app.mount(el);
 }

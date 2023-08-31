@@ -11,9 +11,10 @@ const routes = [
     component: CreateTransaction,
   },
   {
-    path: "/edit/:id",
+    path: "/edit",
+    // path: "/edit/:id",
     component: EditTransaction,
-    props: true,
+    // props: (route) => ({ id: route.params.id }),
   },
 ];
 

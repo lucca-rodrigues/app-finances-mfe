@@ -5,6 +5,7 @@ import App from "./App.vue";
 
 import "./globalStyles.css";
 import Routes from "./Routes";
+import store from "./Context/store";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,5 +19,6 @@ const dynamicProps = {
 };
 const app = createApp(App);
 app.use(router);
+app.use(store);
 app.provide("dynamicProps", dynamicProps);
 app.mount("#transactions");

@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr id="transaction-item" v-for="item in transactions" :key="item?.id">
+        <tr id="transaction-item" v-for="item in transactions" :key="item?.id" @click="getSelectedItem(item)">
           <td>{{ item.title }}</td>
           <td>{{ formatCurrencyValue(item.value) }}</td>
           <td class="text-left">{{ item.type_transaction === "income" ? "🟢 Entrada" : "🔴 Saída" }}</td>
@@ -44,11 +44,7 @@
           <td>{{ item.current_quantity }}</td>
           <td>{{ item.status === "pendding" ? "❌" : "✅" }}</td>
 
-          <!-- <DropdownMenu title="⚙️" :items="dropdownItems">
-              <template v-slot:default> </template>
-            </DropdownMenu> -->
-
-          <td @click="getSelectedItem(item)">
+          <td>
             <DropdownMenu title="⚙️" :items="dropdownItems" :item="item"> </DropdownMenu>
           </td>
         </tr>
@@ -63,6 +59,9 @@
 
 <script>
 import { ref, onMounted, inject } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
 import { getGlobalInfos, validateIndividualApp, setNavigationCookies } from "../../Utils";
 import { getBalance, getIncomeValue, getOutcomeValue } from "./Functions";
 import { TransactionsService } from "../../Services";
@@ -110,6 +109,9 @@ export default {
     const dynamicProps = inject("dynamicProps");
     const backendToken = ref(null);
     const isIndividualApp = validateIndividualApp();
+    const router = useRouter();
+
+    const store = useStore();
 
     const redirectPage = (path) => {
       setNavigationCookies(path);
@@ -118,15 +120,9 @@ export default {
       return formatCurrency(value);
     };
 
-    // onMounted(() => {
-    //   const globalInfos = getGlobalInfos();
-    //   backendToken.value = globalInfos.backendToken;
-    // });
-
-    onMounted(async () => {
+    onMounted(() => {
       const globalInfos = getGlobalInfos();
-      this.backendToken = globalInfos.backendToken;
-      await this.test(); // Chame o método para obter os detalhes da transação após ter o token definido
+      backendToken.value = globalInfos.backendToken;
     });
 
     return {
@@ -135,6 +131,8 @@ export default {
       isIndividualApp,
       redirectPage,
       formatCurrencyValue,
+      router,
+      store,
     };
   },
   methods: {
@@ -179,7 +177,8 @@ export default {
           id: this.selectedItem.id,
         });
 
-        this.getAllTransactions();
+        this.transactions = this.transactions.filter((item) => item.id !== this.selectedItem.id);
+        this.totalItems = this.totalItems - 1;
       }
     },
 
@@ -203,16 +202,10 @@ export default {
     },
 
     async editItem() {
+      console.log("editar item");
       if (this.backendToken && this.selectedItem) {
-        // this.dynamicProps.redirectDynamicPage(`/transactions/edit/${this.selectedItem.id}`, {
-        //   selectedItem: this.selectedItem,
-        // });
-
-        this.isIndividualApp
-          ? this.dynamicProps.redirectDynamicPage(`/edit/${this.selectedItem.id}`, {
-              selectedItem: this.selectedItem,
-            })
-          : this.redirectPage(`/transactions/edit/${this.selectedItem.id}`);
+        this.store.dispatch("updateSelectedItem", this.selectedItem);
+        this.router.push("/edit");
       }
     },
 
