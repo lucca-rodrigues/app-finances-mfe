@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="container"></div>
-      <button class="button-send" type="submit">Cadastrar</button>
+      <button class="button-send" type="submit">Salvar</button>
     </form>
   </div>
 </template>
