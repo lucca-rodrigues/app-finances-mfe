@@ -3,6 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Input } from "app_finances_root/Components";
 import { Container, Box, Stack, Typography, Button, Grid, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
+import { setNavigationCookies } from "../../Utils";
+import Cookies from "js-cookie";
 
 export default function Account(props) {
   const [value, setValue] = useState(0);
@@ -77,6 +79,7 @@ export default function Account(props) {
                 <Tab label="Convidar pessoas" {...a11yProps(0)} />
                 <Tab label="Upgrade de plano" {...a11yProps(1)} />
                 <Tab label="Encerrar minha conta" {...a11yProps(2)} />
+                <Tab label="Sair" {...a11yProps(2)} />
                 {/* <Tab label="Item Four" {...a11yProps(3)} />
                 <Tab label="Item Five" {...a11yProps(4)} />
                 <Tab label="Item Six" {...a11yProps(5)} />
@@ -173,6 +176,26 @@ export default function Account(props) {
               </TabPanel>
               <TabPanel value={value} index={3}>
                 Encerrar minha conta
+              </TabPanel>
+              <TabPanel value={value} index={4}>
+                <Box>
+                  <Typography>Tem certeza que deseja sair?</Typography>
+                  <Button
+                    onClick={() => {
+                      Cookies.remove("app_myfinances");
+                      setNavigationCookies("/");
+                    }}
+                    style={{
+                      backgroundColor: "#ff6c24",
+                      color: "#fff",
+                      padding: 10,
+                      width: "150px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Sim
+                  </Button>
+                </Box>
               </TabPanel>
               {/* <TabPanel value={value} index={4}>
                 Item Five
