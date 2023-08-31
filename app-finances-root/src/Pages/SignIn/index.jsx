@@ -4,15 +4,32 @@ import { useForm, Controller } from "react-hook-form";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import "./styles.css";
 import { useNavigationController } from "../../Context/NavigationController";
+import { AuthService } from "../../Services";
 
 export default function SignIn() {
   const { watch, handleSubmit, control } = useForm();
   const { navigate } = useNavigationController();
   const watchFields = watch();
+  const authService = new AuthService();
 
-  function submitForm(data) {
-    console.log(data);
-    navigate("/transactions");
+  async function submitForm(data) {
+    const authData = {
+      email: data.email,
+      password: data.password,
+    };
+
+    console.log(authData);
+    const response = await authService.auth(authData);
+    console.log("response", response);
+    if (response.status === 200) {
+      const globalInfos = {
+        backendToken: response.data.token,
+      };
+      const currentDomain = window.location.hostname;
+      document.cookie = `app_myfinances=${JSON.stringify(globalInfos)}; domain=${currentDomain}; path=/`;
+
+      navigate("/transactions");
+    }
   }
   return (
     <Box

@@ -93,10 +93,10 @@ export default {
       value: "",
       type_transaction: "outcome",
       status: "pendding",
-      duo_date: "",
+      duo_date: new Date().toISOString().split("T")[0],
       payment_date: "",
-      total_quantity: "",
-      current_quantity: "",
+      total_quantity: 1,
+      current_quantity: 1,
     });
 
     return {

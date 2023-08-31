@@ -4,6 +4,7 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 
 import { useForm, Controller } from "react-hook-form";
 import { useNavigationController } from "../../Context/NavigationController";
+import { AuthService } from "../../Services";
 
 // import { Container } from './styles';
 
@@ -11,9 +12,21 @@ function Signup() {
   const { watch, handleSubmit, control } = useForm();
   const { navigate } = useNavigationController();
   const watchFields = watch();
+  const authService = new AuthService();
 
-  function submitForm(data) {
-    console.log(data);
+  async function submitForm(data) {
+    const authData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      type_user: "user",
+    };
+
+    const response = await authService.create(authData);
+
+    if (response.status === 201) {
+      navigate("/");
+    }
   }
   return (
     <Box

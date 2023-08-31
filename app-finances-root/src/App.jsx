@@ -5,14 +5,14 @@ import "./index.css";
 import { AuthProvider } from "./Context/Auth";
 import { NavigationControllerProvider } from "./Context/NavigationController";
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./Routes"; // Import the AppRoutes component
+import AppRoutes from "./Routes";
 
 const App = () => {
   return (
     <BrowserRouter>
       <NavigationControllerProvider>
         <AuthProvider>
-          <AppRoutes /> {/* Render the AppRoutes component */}
+          <AppRoutes />
         </AuthProvider>
       </NavigationControllerProvider>
     </BrowserRouter>
