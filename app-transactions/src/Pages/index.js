@@ -3,13 +3,12 @@ import TransactionsPage from "./Transactions";
 import CreateTransactionPage from "./CreateTransaction";
 import EditTransactionPage from "./EditTransaction";
 
-import { redirectVuePage, redirectDynamicPage, goBackPage } from "app_finances_root/Utils";
+import { redirectDynamicPage, goBackPage } from "app_finances_root/Utils";
 import Routes from "../Routes";
 import { createRouter, createWebHistory } from "vue-router";
 import store from "../Context/store";
 
 const dynamicProps = {
-  redirectVuePage,
   redirectDynamicPage,
   goBackPage,
 };

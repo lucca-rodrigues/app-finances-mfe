@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import { redirectVuePage, redirectDynamicPage, goBackPage } from "app_finances_root/Utils";
+import { redirectDynamicPage, goBackPage } from "app_finances_root/Utils";
 import App from "./App.vue";
 
 import "./globalStyles.css";
@@ -13,7 +13,6 @@ const router = createRouter({
 });
 
 const dynamicProps = {
-  redirectVuePage,
   redirectDynamicPage,
   goBackPage,
 };

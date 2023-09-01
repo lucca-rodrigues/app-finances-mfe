@@ -8,7 +8,7 @@ import { AuthService } from "../../Services";
 
 // import { Container } from './styles';
 
-function Signup() {
+function SignUp() {
   const { watch, handleSubmit, control } = useForm();
   const { navigate } = useNavigationController();
   const watchFields = watch();
@@ -120,4 +120,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;

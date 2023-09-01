@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, SignIn, Signup } from "../Pages";
+import { Home, SignIn, SignUp } from "../Pages";
 import { Account } from "app_my_account/Pages";
 import { Transactions, CreateTransaction, EditTransaction } from "app_transactions/Pages";
 import { HandleVueComponent } from "../Utils";
@@ -9,7 +9,7 @@ const AppRoutes = () => {
     <Routes>
       {/* <Route path="/" element={<Home />} /> */}
       <Route path="/" element={<SignIn />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/account" element={<Account />} />
       <Route
         path="/transactions"

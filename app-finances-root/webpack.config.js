@@ -13,7 +13,7 @@ module.exports = (_, argv) => ({
 
   devServer: {
     port: 3000,
-    historyapiFallback: true,
+    historyApiFallback: true,
   },
 
   module: {
