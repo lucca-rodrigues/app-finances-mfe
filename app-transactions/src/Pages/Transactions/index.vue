@@ -257,9 +257,8 @@ export default {
     getTransactionsStatus() {
       this.income = getIncomeValue(this?.transactions);
       this.outcome = getOutcomeValue(this?.transactions);
-      // this.balance = getBalance(this.income, this?.transactions);
-      // this.balance = getBalance(this.income, this?.outcome, this?.transactions);
-      this.balance = getIncomeToBalanceValue(this?.transactions) - this.outcome;
+
+      this.balance = getIncomeToBalanceValue(this?.transactions, this.outcome);
 
       console.log("this.balance", this.balance);
     },
