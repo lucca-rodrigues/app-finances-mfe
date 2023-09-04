@@ -87,7 +87,14 @@ import { useRouter } from "vue-router";
 import { DropdownMenu } from "../../Components";
 
 import { getGlobalInfos, validateIndividualApp, setNavigationCookies, formatCurrency, formatDate } from "../../Utils";
-import { getBalance, getIncomeValue, getOutcomeValue, monthsList, yearsList } from "./Functions";
+import {
+  getBalance,
+  getIncomeValue,
+  getOutcomeValue,
+  monthsList,
+  yearsList,
+  getIncomeToBalanceValue,
+} from "./Functions";
 import { TransactionsService } from "../../Services";
 import "../../../src/globalStyles.css";
 import "./styles.css";
@@ -250,7 +257,11 @@ export default {
     getTransactionsStatus() {
       this.income = getIncomeValue(this?.transactions);
       this.outcome = getOutcomeValue(this?.transactions);
-      this.balance = getBalance(this.income, this?.transactions);
+      // this.balance = getBalance(this.income, this?.transactions);
+      // this.balance = getBalance(this.income, this?.outcome, this?.transactions);
+      this.balance = getIncomeToBalanceValue(this?.transactions) - this.outcome;
+
+      console.log("this.balance", this.balance);
     },
 
     getSelectedItem(item) {
