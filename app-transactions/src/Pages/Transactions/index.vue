@@ -259,8 +259,6 @@ export default {
       this.outcome = getOutcomeValue(this?.transactions);
 
       this.balance = getIncomeToBalanceValue(this?.transactions, this.outcome);
-
-      console.log("this.balance", this.balance);
     },
 
     getSelectedItem(item) {
