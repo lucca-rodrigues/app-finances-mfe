@@ -19,7 +19,7 @@ jobs:
             ls -la
             cd app-finances-mf
             sudo git pull
+            sudo docker image rm -f app-finances-mfe_app_accounts
+            sudo docker image rm -f app-finances-mfe_app_transactions
+            sudo docker image rm -f app-finances-mfe_app_finances
             sudo docker-compose up -d --build
-          # sudo docker image rm -f app-finances-mfe_app_accounts
-          # sudo docker image rm -f app-finances-mfe_app_transactions
-          # sudo docker image rm -f app-finances-mfe_app_finances
