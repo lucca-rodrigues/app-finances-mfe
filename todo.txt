@@ -15,9 +15,9 @@
 
 
 ## CI/CD
-- Implementar e testar a build para os ambientes de DEV e PROD
-- Implementar esteira de CI/CD
-- Implementar cron para fazer commit e não perder dados do banco (Deve acessar uma branch de backup e commitar o arquivo lá)
+- Implementar e testar a build para os ambientes de DEV e PROD - OK
+- Implementar esteira de CI/CD -OK
+- Implementar cron para fazer commit e não perder dados do banco (Deve acessar uma branch de backup e commitar o arquivo lá) - OK
 
 ## Melhorias
 - Criar uma feature para importar uma planilha inicial de transações
