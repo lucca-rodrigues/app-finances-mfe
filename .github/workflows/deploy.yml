@@ -17,7 +17,7 @@ jobs:
           password: ${{ secrets.DO_PASS }}
           script: |
             ls -la
-            cd app-finances-mf
+            cd app-finances-mfe
             sudo git pull
             sudo docker image rm -f app-finances-mfe_app_accounts
             sudo docker image rm -f app-finances-mfe_app_transactions
