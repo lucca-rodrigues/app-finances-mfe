@@ -18,9 +18,8 @@ export default function SignIn() {
       password: data.password,
     };
 
-    console.log(authData);
     const response = await authService.auth(authData);
-    console.log("response", response);
+
     if (response.status === 200) {
       const globalInfos = {
         backendToken: response.data.token,
