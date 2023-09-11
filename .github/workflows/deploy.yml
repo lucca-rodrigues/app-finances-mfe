@@ -1,0 +1,25 @@
+name: CD
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v2
+
+      - name: Connects to VPS via SSH
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER}}
+          password: ${{ secrets.DO_PASS }}
+          script: |
+            ls -la
+            cd api-myFinances-API-V2
+            sudo git pull
+            sudo docker image rm -f app-finances-mfe_app_accounts
+            sudo docker image rm -f app-finances-mfe_app_transactions
+            sudo docker image rm -f app-finances-mfe_app_finances
+            sudo docker-compose up -d --build
