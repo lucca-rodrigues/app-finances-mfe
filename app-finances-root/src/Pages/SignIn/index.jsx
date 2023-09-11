@@ -25,7 +25,7 @@ export default function SignIn() {
       const globalInfos = {
         backendToken: response.data.token,
       };
-      const currentDomain = window.location.hostname;
+      const currentDomain = "innova-systems.tec.br" ?? window.location.hostname;
       document.cookie = `app_myfinances=${JSON.stringify(globalInfos)}; domain=${currentDomain}; path=/`;
 
       navigate("/transactions");
