@@ -17,7 +17,7 @@ jobs:
           password: ${{ secrets.DO_PASS }}
           script: |
             ls -la
-            cd api-myFinances-API-V2
+            cd app-finances-mf
             sudo git pull
             sudo docker-compose up -d --build
           # sudo docker image rm -f app-finances-mfe_app_accounts
