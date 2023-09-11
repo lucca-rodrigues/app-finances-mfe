@@ -46,8 +46,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3002:3002
-    # networks:
-    #   - shared_network
+    networks:
+      - shared_network
 networks:
   shared_network:
     driver: bridge
