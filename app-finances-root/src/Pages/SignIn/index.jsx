@@ -26,9 +26,7 @@ export default function SignIn() {
       };
       const currentDomain = window.location.hostname;
 
-      const cookieDomain = currentDomain !== ".innova-systems.tec.br" ? "localhost" : ".innova-systems.tec.br";
-
-      document.cookie = `app_myfinances=${JSON.stringify(globalInfos)}; domain=${cookieDomain}; path=/`;
+      document.cookie = `app_myfinances=${JSON.stringify(globalInfos)}; domain=${currentDomain}; path=/`;
 
       navigate("/transactions");
     }

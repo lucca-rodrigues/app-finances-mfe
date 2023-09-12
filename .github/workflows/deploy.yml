@@ -21,7 +21,8 @@ jobs:
             sudo git pull
             docker-compose down
             docker system prune -a -f
-            docker-compose up -d --build
+            docker-compose up -d
+          # docker-compose up -d --build
     #         sudo docker image rm -f app-finances-mfe_app_transactions
     #         sudo docker image rm -f app-finances-mfe_app_finances
     #         sudo docker image rm -f app-finances-mfe_app_accounts
