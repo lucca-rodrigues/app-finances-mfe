@@ -22,42 +22,6 @@ jobs:
             docker-compose down
             docker system prune -a -f
             docker-compose up -d --build
-    # steps:
-    #   - name: Repository checkout
-    #     uses: actions/checkout@v2
-
-    #   - name: Connects to VPS via SSH
-    #     uses: appleboy/ssh-action@v0.1.4
-    #     with:
-    #       host: ${{ secrets.DO_HOST }}
-    #       username: ${{ secrets.DO_USER}}
-    #       password: ${{ secrets.DO_PASS }}
-    #       script: |
-    #         ls -la
-    #         cd app-finances-mfe
-    #         sudo git pull
-
-    #   - name: Build apps
-    #     uses: appleboy/ssh-action@v0.1.4
-    #     with:
-    #       host: ${{ secrets.DO_HOST }}
-    #       username: ${{ secrets.DO_USER}}
-    #       password: ${{ secrets.DO_PASS }}
-    #       script: |
-    #         cd app-finances-mfe
-    #         sudo docker image rm -f app-finances-mfe_app_accounts
     #         sudo docker image rm -f app-finances-mfe_app_transactions
     #         sudo docker image rm -f app-finances-mfe_app_finances
-
-    #   - name: Publish updates
-    #     uses: appleboy/ssh-action@v0.1.4
-    #     with:
-    #       host: ${{ secrets.DO_HOST }}
-    #       username: ${{ secrets.DO_USER}}
-    #       password: ${{ secrets.DO_PASS }}
-    #       script: |
-    #         cd app-finances-mfe
     #         sudo docker image rm -f app-finances-mfe_app_accounts
-    #         sudo docker image rm -f app-finances-mfe_app_transactions
-    #         sudo docker image rm -f app-finances-mfe_app_finances
-    #         sudo docker-compose up -d --build
