@@ -22,6 +22,7 @@ jobs:
             docker-compose down
             docker system prune -a -f
             docker-compose up -d
+            sudo service nginx restart
           # docker-compose up -d --build
     #         sudo docker image rm -f app-finances-mfe_app_transactions
     #         sudo docker image rm -f app-finances-mfe_app_finances
