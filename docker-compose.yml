@@ -13,22 +13,10 @@ services:
   #   networks:
   #     - shared_network
 
-  app_finances:
-    container_name: app-finances
-    # depends_on:
-    #   - api_service
-    build:
-      context: ./app-finances-root
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    networks:
-      - shared_network
-
   app_transactions:
     container_name: app-transactions
-    depends_on:
-      - app_finances
+    # depends_on:
+    #   - app_finances
     build:
       context: ./app-transactions
       dockerfile: Dockerfile
@@ -39,8 +27,8 @@ services:
 
   app_accounts:
     container_name: app-accounts
-    depends_on:
-      - app_finances
+    # depends_on:
+    #   - app_finances
     build:
       context: ./app-my-account
       dockerfile: Dockerfile
@@ -48,6 +36,20 @@ services:
       - 3002:3002
     # networks:
     #   - shared_network
+
+  app_finances:
+    container_name: app-finances
+    depends_on:
+      - app_transactions
+      - app_accounts
+    build:
+      context: ./app-finances-root
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared_network
+
 networks:
   shared_network:
     driver: bridge
