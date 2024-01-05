@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn
+RUN npm i
 
 EXPOSE 3000
 
