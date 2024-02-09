@@ -4,7 +4,8 @@ const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3001/",
+    // publicPath: "http://localhost:3001/",
+    publicPath: "auto",
   },
 
   resolve: {
@@ -12,6 +13,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
+    host: "0.0.0.0",
     port: 3001,
     historyApiFallback: true,
   },
@@ -49,7 +51,7 @@ module.exports = (_, argv) => ({
       name: "app_transactions",
       filename: "remoteEntry.js",
       remotes: {
-        app_finances_root: "app_finances_root@http://localhost:3000/remoteEntry.js",
+        app_finances_root: "app_finances_root@http://192.168.0.243:3002/remoteEntry.js",
       },
       exposes: {
         "./Pages": "./src/Pages",
